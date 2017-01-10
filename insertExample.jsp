@@ -10,7 +10,7 @@
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO TB_USER_INFO(ID,PW,NAME,JOIN_DATE) values(?,HASHBYTES('SHA1',?),?,GETDATE())";
+		String sql = "insert into TB_USER_INFO(ID,PW,NAME) values(?,HASHBYTES('SHA1',?),?)";
 		int n=0;
 
 		try

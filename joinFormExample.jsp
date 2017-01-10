@@ -39,7 +39,7 @@
 			<tr>
 				<td colspan=2><font size="2" color="red">*은 필수항복입니다.</td>
 			</tr>
-			<form method="post" action="insertExample1.jsp" name="addJoin">
+			<form method="post" action="insertExample.jsp" name="addJoin">
 				<tr height="70">
 					<td>아이디 *<p></td><td><input type="text" name="id" maxlength="15" style="height:40;width:300;"><p></td>
 				</tr>
