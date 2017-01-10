@@ -10,7 +10,7 @@
 				<!--<h3>DB(darby_test) Login</h3>-->
 				아이디<br><br><input type="text" id="id" name="id" style="height:40"><br><p>
 				비밀번호<br><br><input type="password" id="pw" name="pw" style="height:40"><br><p>
-				<span id="nameTag"><b>이름 : <span id="name">Unknown</span></b></span><br><p>
+				<span id="nameTag"><b> <span id="join_date"></span></b></span><br><p>
 				<input type="button" id="login" value="Login" onclick="getName();" style="height:50;width:100">
 			</td>
 		</tr>
@@ -25,14 +25,14 @@
 	function getName()
 	{
 		$.ajax({
-			url:'./getName.jsp',
+			url:'./getDate.jsp',
 			type:'post',
 			//data:data,
 			data:$('input').serialize(),
 			success:function(data){
 				//console.log(data);
-				var str = '<font color=blue><b>'+data+'</b></font>';
-				$('#name').html(str);
+				var str = '가입 시간 :<font color=blue><b>'+data+'</b></font>';
+				$('#join_date').html(str);
 			}
 		});
 	}
