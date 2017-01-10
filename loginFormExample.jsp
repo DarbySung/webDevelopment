@@ -25,12 +25,11 @@
 	function getName()
 	{
 		var id = $('#id').val();
-		var pw = $('#pw').val();		
-		var url = "./getName.jsp?id="+id+"&pw="+pw;
-		console.log(url);
-		var xhttp = new XMLHttpRequest();
-		xhttp.open("POST", url, true);
+		var pw = $('#pw').val();
+		var url = './getName.jsp';
 
+		var xhttp = new XMLHttpRequest();
+		xhttp.open("POST", url);
 		xhttp.onreadystatechange = function()
 		{
 			if(xhttp.readyState === 4 && xhttp.status === 200)
@@ -39,7 +38,11 @@
 				$('#name').html(str)
 			}
 		}
-		xhttp.send();
+		xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		var data = '';
+		data += 'id='+id;
+		data += '&pw='+pw;
+		xhttp.send(data);
 	}
 	</script>
 	<script src="//code.jquery.com/jquery-3.1.1.js"></script>
