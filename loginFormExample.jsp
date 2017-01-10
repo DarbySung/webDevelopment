@@ -16,7 +16,7 @@
 		</tr>
 		<tr align = "right">
 			<!--<td><input type="button" onclick="changeValue();"/></td>-->
-			<td><a href="joinFormExample5.jsp">계정 추가</a>&nbsp;&nbsp;&nbsp;</td>
+			<td><a href="joinFormExample.jsp">계정 추가</a>&nbsp;&nbsp;&nbsp;</td>
 		</tr>
 	</table>
 	</center>
@@ -24,25 +24,17 @@
 	<script>
 	function getName()
 	{
-		var id = $('#id').val();
-		var pw = $('#pw').val();
-		var url = './getName.jsp';
-
-		var xhttp = new XMLHttpRequest();
-		xhttp.open("POST", url);
-		xhttp.onreadystatechange = function()
-		{
-			if(xhttp.readyState === 4 && xhttp.status === 200)
-			{
-				var str = '<font color=blue><b>'+xhttp.responseText+'</b></font>'
-				$('#name').html(str)
+		$.ajax({
+			url:'./getName.jsp',
+			type:'post',
+			//data:data,
+			data:$('input').serialize(),
+			success:function(data){
+				//console.log(data);
+				var str = '<font color=blue><b>'+data+'</b></font>';
+				$('#name').html(str);
 			}
-		}
-		xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-		var data = '';
-		data += 'id='+id;
-		data += '&pw='+pw;
-		xhttp.send(data);
+		});
 	}
 	</script>
 	<script src="//code.jquery.com/jquery-3.1.1.js"></script>
