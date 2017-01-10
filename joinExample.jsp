@@ -10,7 +10,7 @@
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "insert into TB_USER_INFO(ID,PW,NAME) values(?,HASHBYTES('SHA1',?),?)";
+		String sql = "INSERT INTO TB_USER_INFO(ID,PW,NAME,JOIN_DATE) values(?,HASHBYTES('SHA1',?),?,GETDATE())";
 		int n=0;
 
 		try
@@ -55,10 +55,10 @@
 	%>
 	<script type="text/javascript">
 		if(<%=n%> > 0){
-			alert("Joining Success!");
-			location.href="loginFormExample1.jsp";
+			alert("가입이 완료되었습니다.");
+			location.href="loginFormExample8.jsp";
 		}else{
-			alert("Joining fail!");
+			alert("가입 중 오류가 발생했습니다.");
 			history.go(-1);
 		}
 	</script>
