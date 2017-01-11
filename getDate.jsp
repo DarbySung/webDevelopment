@@ -1,7 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import = "java.sql.*" %>
+<%@ page import = "org.json.*" %>
 <html>
-<bod>
+<body>
 	<%
 		request.setCharacterEncoding("UTF-8");
 		String id = request.getParameter("id");
@@ -31,8 +32,22 @@
 			{
 				size++;
 				String date = rs.getString("JOIN_DATE");
-				out.println(date);
-				//System.out.println(name);
+				String name = rs.getString("NAME");
+				JSONObject jObj = new JSONObject();
+
+				jObj.put("date", date);
+				jObj.put("name", name);
+
+				/* response 객체를 사용하지 않는 경우
+				out.clear();
+				out.print(jObj);
+				*/
+
+				out.clear();
+				response.setContentType("application/json; charset=UTF-8");
+				response.getWriter().print(jObj);
+
+				return;
 			}
 			loginFlag = size > 0 ? true : false;
 		}
@@ -55,11 +70,11 @@
 			}
 		}
 	%>
-	<script type="text/javascript">
-		if(<%=loginFlag%> == false){
+	<script>
+		if(<%=loginFlag%> == false)
+		{
 			alert("아이디나 패스워드가 틀렸습니다.");
-			//history.go(-1);
 		}
 	</script>
-</bod>
+</body>
 </html>
